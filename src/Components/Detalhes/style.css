@@ -1,0 +1,60 @@
+.container3 {
+    width: 800px;
+    height: 90vh;
+    background: white;
+    border-radius: 5px;
+
+}
+
+.detalhes-atividade {
+    color: #d33f8d;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.voltar {
+    width: 100px;
+    height: 8vh;
+    background: #d33f8d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 250px;
+    margin-left: 10px;
+}
+
+p {
+    color: #d33f8d;
+}
+
+.dados-detalhes {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+button {
+    width: 70px;
+    height: 6vh;
+    background: #d33f8d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+    
+}
+
+.botoes { 
+    display: flex;
+    justify-content: center;
+}
+
+.botoes button{
+    margin: 10px;
+}
+
+
+

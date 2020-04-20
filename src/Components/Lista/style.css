@@ -1,0 +1,35 @@
+.lista-atividades {
+    display: flex;
+    justify-content: space-between;
+}
+
+.click-botao {
+    text-decoration: none;
+    color: white;
+    background: #d33f8d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.detalhes-lista {
+    margin-left: 10px;
+    margin-bottom: 6px;
+}
+
+.detalhes-listaa {
+    margin-right: 10px;
+    margin-top: 8px;
+}
+.divisao-atividades {
+    width: 775px;
+    height: 1px;
+    background: #f58ef3;
+    margin-left: 10px;
+
+}
+
+

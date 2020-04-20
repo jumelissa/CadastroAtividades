@@ -1,0 +1,99 @@
+.container {
+    width: 500px;
+    height: 90vh;
+    background: white;
+    border-radius: 5px;
+
+}
+
+h1 {
+    text-align: center;
+    padding-top: 100px;
+    color: #d33f8d;
+}
+
+form {
+    text-align: center;
+    margin-top: 50px;
+}
+
+input[type=text] {
+    height: 40px;
+    width: 300px;
+    padding-left: 20px;
+
+}
+
+input[type=password] {
+        height: 40px;
+        width: 300px;
+        padding-left: 20px;
+}
+
+.senha {
+    margin-top: 30px;
+}
+
+.remember {
+    margin-top: 30px;
+    display: flex;
+    justify-content: baseline;
+    margin-left: 100px;
+    color: #768591;
+}
+
+label {
+    margin-left: 10px;
+}
+
+.check {
+    -webkit-appearance: none;
+    background-color: white;
+    border: 2px solid #d33f8d;
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    outline: none;
+    
+}
+
+.check:checked::after {
+    content: '\2714';
+    font-size: 20px;
+    position: absolute;
+    top: -5px;
+    left: 1px;
+    color: #d33f8d;
+}
+
+.botao {
+    width: 300px;
+    height: 8vh;
+    background: #d33f8d;
+    margin-top: 40px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 98px;
+    border-radius: 5px;
+}
+
+.click-botao {
+    text-decoration: none;
+    color: white;
+    background: #d33f8d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+
+
+    
