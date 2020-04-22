@@ -19,10 +19,11 @@ export default class Cadastro extends Component {
             dadosModal: ''
     }
 
-    validationModal = (event) => {
+        dadosModal = (event) => {
         this.setState({dadosModal: event.target.value})
         console.log(this.state.dadosModal);
-     } 
+    } 
+
 
  
             modal = () => {
@@ -94,7 +95,7 @@ export default class Cadastro extends Component {
                         <Lista data={e.data} atividade={e.atividade} />
                     )})}
             </div>
-                <Modal show={this.state.showModal} toggleModal={this.modal}/>
+                <Modal show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal}/>
                 </>
         )
     }
