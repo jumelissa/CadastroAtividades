@@ -6,7 +6,10 @@ export default class Login extends Component {
     
     state = {
         email: '',
-        senha: ''
+        senha: '',
+        rotacadastro: '',
+        senhaCorreta: false,
+        emailCorreto: false
     }
 
 
@@ -21,18 +24,26 @@ export default class Login extends Component {
                 const email=this.state.email.split("");
                 email.forEach(letra => {
                     if (letra === "@") {
+                        this.setState({emailCorreto: true})
+                        if (this.state.emailCorreto === true && this.state.senhaCorreta ) {
+                            this.setState({rotacadastro: '/Cadastro'});
+                        }
                         validor = true;
                     }
                 } )
 
             } else {
-                console.log("O email tem que ter um dominio")
+                this.setState({rotacadastro: ''});
+                this.setState({emailCorreto: false})
+                console.log("O email tem que ter um dominio");
             }
 
         } else { 
-            console.log("O email tem que ter mais de 7 letras")
+            this.setState({rotacadastro: ''});
+            this.setState({emailCorreto: false})
+            console.log("O email tem que ter mais de 7 letras");
         } if (validor) {
-            console.log("seu email esta valido")
+            console.log("seu email esta valido");
         }
 
 
@@ -43,12 +54,18 @@ export default class Login extends Component {
         let pattern = /(?=.*[a-zA-Z])/g;
         let pattern2 = /(?=.*[0-9])/;
         if (pattern.test(string)) {
-            console.log("Valido");
+            console.log("A senha precisa ter numeros");
             if (pattern2.test(string)) {
+                this.setState({senhaCorreta: true})
+                if (this.state.emailCorreto === true && this.state.senhaCorreta ) {
+                    this.setState({rotacadastro: '/Cadastro'});
+                }
                 console.log("senha ok")
             }
         } else {
-                console.log("senha incorreta");
+            this.setState({rotacadastro: ''});
+            this.setState({senhaCorreta: false})
+                console.log("senha valida");
             
         }
 
@@ -77,7 +94,7 @@ export default class Login extends Component {
                     </div>
 
                     <div className="botao">
-                    <Link to="/Cadastro" className="click-botao">Sign in</Link>
+                    <a href={this.state.rotacadastro} className="click-botao">Sign in</a>
                     </div>
         
                 </form>

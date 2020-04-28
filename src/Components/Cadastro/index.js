@@ -96,6 +96,7 @@ export default class Cadastro extends Component {
                     )})}
             </div>
                 <Modal show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal}/>
+                
                 </>
         )
     }
