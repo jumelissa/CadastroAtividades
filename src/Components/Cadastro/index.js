@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../Modal/modal';
 import Lista from '../Lista/index';
 
 import './style.css';
@@ -19,16 +18,7 @@ export default class Cadastro extends Component {
             dadosModal: ''
     }
 
-        dadosModal = (event) => {
-        this.setState({dadosModal: event.target.value})
-        console.log(this.state.dadosModal);
-    } 
 
-
- 
-            modal = () => {
-                this.setState({showModal:!this.state.showModal})
-            }
 
             salvarDados = (e) => {
                 let list = []
@@ -63,30 +53,24 @@ export default class Cadastro extends Component {
 
                 <h2 className="cadastrar-atividade">Cadastrar Atividade</h2>
 
-               <div className="container-cadastro">
-               <div>
-                     <label>Atividade:</label><br></br>
-                    <input type="text" className="atividade" id="atividade" name="atividade" onChange={this.updateDadosAtividade}></input><br></br>
+                    <form>
+                     <label>Atividade:</label>
+                    <input type="text" className="atividade" id="atividade" name="atividade" onChange={this.updateDadosAtividade}/>
                 
-                    <label className="data">Data:</label><br></br>
-                    <input type="text" id="data" name="data" onChange={this.updateDadosData}></input><br></br>
+                    <label className="data">Data:</label>
+                    <input type="text" id="data" name="data" onChange={this.updateDadosData}/>
 
                     
-                    <label>Descrição:</label><br></br>
+                    <label>Descrição:</label>
                     <textarea id="descricao" rows="3" cols="41" onChange={this.updateDadosDescricao}></textarea>
-                    </div>
                     
-                    <div className="botoes-comentario-cadastrar">
-                        <div className="botao-comentario">
-                        <button onClick={this.modal}>Comentario</button>
-                        </div>
-                        
-                        <Link to="#" className="next" onClick={this.salvarDados}>Cadastrar</Link>
-                    </div>
+                    
+                    <input type="submit" value="Cadastrar" className="next" onClick={this.salvarDados}/>
+                        </form>
 
                </div>
 
-                    <div className="line"></div>
+                    <hr></hr>
 
                     <h3 className="lista-de-atividades">Lista de atividades</h3>
 
@@ -94,8 +78,7 @@ export default class Cadastro extends Component {
                         return (
                         <Lista data={e.data} atividade={e.atividade} />
                     )})}
-            </div>
-                <Modal show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal}/>
+            
                 
                 </>
         )
