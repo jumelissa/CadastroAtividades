@@ -28,7 +28,7 @@ export default class Detalhes extends Component {
         return(
             <>
             <div className="container3">
-                <h2 className="detalhes-atividade">Detalhes da atividade</h2>
+                <h2>Detalhes da atividade</h2>
 
                 <div className="dados-detalhes">
                     <p>Atividade{this.props.atividade}</p>

@@ -8,7 +8,9 @@ export default class Login extends Component {
         email: '',
         senha: '',
         senhaCorreta: false,
-        emailCorreto: false
+        emailCorreto: false,
+        dados: []
+        
     }
 
 
@@ -87,6 +89,14 @@ export default class Login extends Component {
                     if (password === this.state.senha) {
                         sessionStorage.setItem('user_id', id)
                         sessionStorage.setItem('user_email', email)
+
+                        sessionStorage.getItem('user_id', id)
+                        sessionStorage.getItem('user_email', email)
+
+                        // if (sessionStorage.getItem() !== null ) {
+                        //     this.setstate({dados: JSON.parse(sessionStorage.getItem('dados'))})
+                        // }
+
                         this.props.history.push('/Cadastro')
                     } else {
                         console.log(`voce não esta logado`)

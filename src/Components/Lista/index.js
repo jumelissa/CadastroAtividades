@@ -14,7 +14,7 @@ const Lista = (props) => {
                 </div>
     
                 <div className="detalhes-listaa">
-                    <Link to="/Detalhes" className="click-botao" atividade={props.atividade}>ver detalhes</Link>
+                    <Link to={`/Detalhes`} className="click-botao">ver detalhes</Link>
                 </div>
             </div>
 

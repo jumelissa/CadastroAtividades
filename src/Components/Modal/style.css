@@ -10,11 +10,17 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+h4 {
+    color: #d33f8d;
+    text-align: center;
+    padding: 10px;
+
+}
 .container-modal {
     position: relative;
     background: white;
     width: 40%;
-    height: 20%;
+    height: 25%;
     border-radius: 2px;
 }
 

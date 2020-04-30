@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import Lista from '../Lista/index';
 
 import './style.css';
+import Api from '../../services/api';
 
 export default class Cadastro extends Component {
     state = {
             showModal: false,
             dados : {
-                atividade: "ir ao mercado",
-                data: "17/04/2020",
-                descricao: "preciso comprar ingredientes para fazer um bolo"
+                title: "ir ao mercado",
+                due_date: "17/04/2020",
+                description: "preciso comprar ingredientes para fazer um bolo"
             },
             
             dadosLista: [],
@@ -18,27 +19,48 @@ export default class Cadastro extends Component {
             dadosModal: ''
     }
 
+    componentDidMount() {
+        console.log("estou carregando");
+        this.carregarItems();
+    }
+    
+    carregarItems = async () => {
+        let user_id = sessionStorage.getItem('user_id');
+        let dadosLista = await Api.get(`/tasks?user_id${user_id}`);
+        dadosLista = dadosLista.data;
+        this.setState({...this.state.dadosLista,dadosLista});
+        console.log(this.state);
+        
+    }
 
 
-            salvarDados = (e) => {
+            salvarDados = async (e) => {
                 let list = []
                 list.push(this.state.dados)
                 this.setState({dadosLista: [...this.state.dadosLista, this.state.dados]});
                 console.log(this.state.dadosLista);
+                let task = {...this.state.dados,user_id: sessionStorage.getItem('user_id')};
+                try {
+                     let res = await Api.post(`/tasks`, task);
+                     console.log(res);
+                } catch(err) {
+                    console.log(`Erro ao cadastrar ${err}`);
+                
+                }
             }
 
             updateDadosAtividade = (e) => {
-                this.setState({ dados: Object.assign({}, this.state.dados, {atividade: e.target.value})});
+                this.setState({ dados: Object.assign({}, this.state.dados, {title: e.target.value})});
                 console.log(e.target.value);
             }
            
             updateDadosData = (e) => {
-                    this.setState({ dados: Object.assign({}, this.state.dados, {data: e.target.value})});
+                    this.setState({ dados: Object.assign({}, this.state.dados, {due_date: e.target.value})});
                 console.log(this.state.dados);
             }
 
             updateDadosDescricao = (e) => {
-                    this.setState({ dados: Object.assign({}, this.state.dados, {descricao: e.target.value})});
+                    this.setState({ dados: Object.assign({}, this.state.dados, {description: e.target.value})});
                 console.log(this.state.dados);
             }
 
@@ -51,9 +73,10 @@ export default class Cadastro extends Component {
             <>
             <div className="container2">
 
-                <h2 className="cadastrar-atividade">Cadastrar Atividade</h2>
+                <h2>Cadastrar Atividade</h2>
 
-                    <form>
+               <form className="form-cadastro">
+                 
                      <label>Atividade:</label>
                     <input type="text" className="atividade" id="atividade" name="atividade" onChange={this.updateDadosAtividade}/>
                 
@@ -63,22 +86,21 @@ export default class Cadastro extends Component {
                     
                     <label>Descrição:</label>
                     <textarea id="descricao" rows="3" cols="41" onChange={this.updateDadosDescricao}></textarea>
+                </form>
                     
                     
-                    <input type="submit" value="Cadastrar" className="next" onClick={this.salvarDados}/>
-                        </form>
+                        <input type="submit" value="Cadastrar" className="cadastro" onClick={this.salvarDados}/>
 
-               </div>
+                        <hr></hr>
 
-                    <hr></hr>
+                        <h2>Lista de atividades</h2>
 
-                    <h3 className="lista-de-atividades">Lista de atividades</h3>
-
-                    {this.state.dadosLista.map((e) => {
+                        {this.state.dadosLista.map((e) => {
                         return (
-                        <Lista data={e.data} atividade={e.atividade} />
-                    )})}
-            
+                        <Lista data={e.due_date} atividade={e.title} />
+                        )})}
+            </div>
+
                 
                 </>
         )
