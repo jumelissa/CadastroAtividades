@@ -97,7 +97,7 @@ export default class Cadastro extends Component {
 
                         {this.state.dadosLista.map((e) => {
                         return (
-                        <Lista data={e.due_date} atividade={e.title} />
+                        <Lista data={e.due_date} atividade={e.title} id={e.id}/>
                         )})}
             </div>
 

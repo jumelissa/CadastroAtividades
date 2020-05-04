@@ -2,16 +2,34 @@ import React, { Component } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/modal';
+import Api from '../../services/api';
 
 export default class Detalhes extends Component {
     constructor(props) {
         super(props) 
         this.state = {
             showModal: false,
-            dadosModal: ''
+            dadosModal: '',
+            listaFiltrada: {}
+            
         }
 
     }
+
+    componentDidMount() {
+        console.log("estou carregando");
+        this.carregarDetalhes();
+    }
+
+    carregarDetalhes = async () => {
+        let id = this.props.match.params.id;
+        let filtro = await Api.get(`/tasks?id=${id}`);
+        filtro = filtro.data[0];
+        await this.setState({listaFiltrada: filtro});
+        console.log(this.state.listaFiltrada);
+
+    }
+    
 
     dadosModal = (event) => {
         this.setState({dadosModal: event.target.value})
@@ -25,15 +43,16 @@ export default class Detalhes extends Component {
             }
 
     render(props) {
+        const {title, due_date, description}=this.state.listaFiltrada
         return(
             <>
             <div className="container3">
                 <h2>Detalhes da atividade</h2>
 
                 <div className="dados-detalhes">
-                    <p>Atividade{this.props.atividade}</p>
-                    <p>Data:{this.props.data}</p>
-                    <p>Descrição:{this.props.descricao}</p>
+                    <p>Atividade{title}</p>
+                    <p>Data:{due_date}</p>
+                    <p>Descrição:{description}</p>
                     <p>Comentário:</p>
                 </div>
                 
@@ -55,5 +74,5 @@ export default class Detalhes extends Component {
                     </>
                 
         )
-    }
+    } 
 }
