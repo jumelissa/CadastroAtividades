@@ -40,21 +40,7 @@ p {
     color: #d33f8d;
 }
 
-.divisao-detalhes-textarea {
-    display: flex;
-    align-items: baseline;
-    margin-left: 100px;
-}
 
-.textarea-descricao {
-    -webkit-appearance: none;
-    overflow-y: scroll;
-    resize: none;
-    color: #738094;
-    border: none;
-   width: 400px;
-   height: 60px;
-}
 
 button {
     width: 70px;
@@ -74,6 +60,11 @@ button {
     
 }
 
+.div-dados {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
 
 .botoes { 
     display: flex;

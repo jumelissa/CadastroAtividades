@@ -47,14 +47,28 @@ export default class Detalhes extends Component {
                 this.setState({showModal:!this.state.showModal})
             }
 
-    editarDetalhes = () => {
+    editarDetalhes = async () => {
+                let id = this.props.match.params.id;
+                let tasks = {title:this.state.title, due_date:this.state.due_date, description:this.state.description}
                 this.setState({editarDisabled: false});
-                let task_save = Api.put(`id`)
+                if (this.state.editarDisabled == false) {
+                    try {
+                        if (await Api.put(`/tasks/${id}`, tasks)) {
+                            this.setState({editarDisabled: true})
+                        }
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
+
+                
+                
             }
 
     removerDetalhes = async () => {
-                let remover = await Api.delete(`id`)
-                console.log(remover);
+             let id = this.props.match.params.id;
+             let remover = await Api.delete(`/tasks/${id}`)
+             console.log(remover)
 
     }
 
@@ -72,22 +86,22 @@ export default class Detalhes extends Component {
                 
                     <form className="dados-detalhes">
 
-                        <div className="divisao-detalhes">
+                        <div className="div-dados">
                             <label>Atividade:</label>
                             <input type="text" value={title} name="title" onChange={this.atualizarEstado} disabled={this.state.editarDisabled} className="input-detalhes"/>
                         </div>
 
-                        <div className="divisao-detalhes">
-                            <label>Data:</label>
-                            <input type="text" value={due_date} name="due_date" disabled={this.state.editarDisabled} className="input-detalhes"/>
+                        <div className="div-dados">
+                            <label>Data:    </label>
+                            <input type="text" value={due_date} name="due_date" onChange={this.atualizarEstado} disabled={this.state.editarDisabled} className="input-detalhes"/>
                         </div>
 
-                        <div className="divisao-detalhes-textarea">
+                        <div className="div-dados">
                             <label>Descrição:</label>
-                            <textarea rows="3" cols="41" value={description} name="description" disabled={this.state.editarDisabled} className="textarea-descricao"></textarea>
+                            <input type="text" value={description} name="description" onChange={this.atualizarEstado} disabled={this.state.editarDisabled} className="input-detalhes"/>
                         </div>
 
-                        <div className="divisao-detalhes">
+                        <div className="div-dados">
                             <label>Comentário:</label>
                             <input type="text" value="" className="input-detalhes"/>
                         </div>
