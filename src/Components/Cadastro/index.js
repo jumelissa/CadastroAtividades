@@ -16,7 +16,7 @@ export default class Cadastro extends Component {
             
             dadosLista: [],
             
-            dadosModal: ''
+            
     }
 
     componentDidMount() {

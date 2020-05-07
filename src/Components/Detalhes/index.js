@@ -3,6 +3,7 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/modal';
 import Api from '../../services/api';
+import { FaArrowLeft } from "react-icons/fa";
 
 export default class Detalhes extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ export default class Detalhes extends Component {
             editarDisabled: true,
             title: '',
             due_date: '',
-            description: ''
+            description: '',
+            dadosModal: ''
             
         }
 
@@ -29,9 +31,12 @@ export default class Detalhes extends Component {
         let id = this.props.match.params.id;
         let filtro = await Api.get(`/tasks?id=${id}`);
         filtro = filtro.data[0];
-        let {title, due_date, description} = filtro;
-        await this.setState({title, due_date, description});
-        console.log(this.state.listaFiltrada);
+            if (filtro) {
+                let {title, due_date, description} = filtro;
+                await this.setState({title, due_date, description});
+                console.log(this.state.listaFiltrada);
+        }
+        
 
     }
     
@@ -40,6 +45,14 @@ export default class Detalhes extends Component {
         this.setState({dadosModal: event.target.value})
         console.log(this.state.dadosModal);
     } 
+
+        salvarComentario = async (e) => {
+            let id = this.props.match.params.id;
+            // let task_id = sessionStorage.getItem('task_id');
+            let task_id = {comment: this.state.dadosModal, task_id: id};
+            // let comment = await Api.put(`/comments`, comment);
+            console.log(task_id);
+    }
 
 
  
@@ -81,7 +94,15 @@ export default class Detalhes extends Component {
         return(
             <>
             <div className="container3">
-                <h2>Detalhes da atividade</h2>
+
+                <div className="header-detalhes">
+                    <Link to="/Cadastro" className="link">
+                        <FaArrowLeft className="icon-voltar"/>
+                    </Link>
+                    
+                    <h2>Detalhes da atividade</h2>
+                </div>
+                
 
                 
                     <form className="dados-detalhes">
@@ -92,7 +113,7 @@ export default class Detalhes extends Component {
                         </div>
 
                         <div className="div-dados">
-                            <label>Data:    </label>
+                            <label>Data:</label>
                             <input type="text" value={due_date} name="due_date" onChange={this.atualizarEstado} disabled={this.state.editarDisabled} className="input-detalhes"/>
                         </div>
 
@@ -119,14 +140,11 @@ export default class Detalhes extends Component {
                             <button onClick={this.removerDetalhes} className="remover">Remover</button>
                         </div>
                         
-                    
-                            <div>
-                                <Link to="/Cadastro" className="voltar">voltar</Link>
-                            </div>
+
                             
                         </div>
 
-                        <Modal show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal}/>
+                        <Modal show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal} salvarComentario={this.salvarComentario}/>
                     </>
                 
         )

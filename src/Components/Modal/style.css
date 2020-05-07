@@ -1,33 +1,83 @@
 .modal {
-    width: 100%;
-    height: 100%;
-    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     z-index: 100000;
     padding: 10vh;
     left: 0;
     top: 0;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h4 {
     color: #d33f8d;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
 
 }
 .container-modal {
+    display: flex;
+    flex-direction: column;
     position: relative;
     background: white;
-    width: 40%;
-    height: 25%;
+    width: 50%;
+    height: 40%;
     border-radius: 2px;
+    display: flex;
+    
 }
 
 .show-true {
-    display: block;
+    visibility: none;
 }
 
 .show-false {
-    display: none;
+    visibility: hidden;
+}
+
+.btn-salvar {
+    
+    width: 74px;
+    height: 6vh;
+    background: #d33f8d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: none;
+    
+    
+}
+
+.btn-salver-fechar {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 90px;
+}
+
+
+
+.fechar-modal { 
+    color: #d33f8d;
+    font-size: 15px;
+    cursor: pointer;
+    
+}
+
+.icon {
+    margin: 3px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-btn {
+    display: flex;
+    align-items: baseline;
+    margin-top: 30px;
+    justify-content: center;
 }
