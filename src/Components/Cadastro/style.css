@@ -92,6 +92,18 @@ hr {
     
 }
 
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    width: 300px;
+    color: #738094;
+
+}
+
 .lista-de-atividades {
     text-align: center;
     color: #d33f8d;

@@ -12,7 +12,7 @@ const Router = () => {
             <Route path="/Cadastro" component={Cadastro} />
             <Route path="/Detalhes/:id"  component={Detalhes}/>
 
-            {/* <Route path="/Detalhes/:id" render={(props) => <Detalhes {...props} atividade={e.title} /> */}
+
             
         </Switch>
     </BrowserRouter>

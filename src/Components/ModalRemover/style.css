@@ -1,0 +1,58 @@
+.modal-remover {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100000;
+    padding: 10vh;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-modall {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: white;
+    width: 30%;
+    height: 25%;
+    border-radius: 2px;
+    display: flex;
+}
+
+.shoow-true {
+    visibility: none;
+}
+
+.shoow-false {
+    visibility: hidden;
+}
+
+.remover {
+      text-decoration: none;
+    color: white;
+    width: 70px;
+    height: 6vh;
+    background: #d33f8d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.btn-modal {
+    display: flex;
+    justify-content: center;
+}
+
+.container-modall p {
+    text-align: center;
+    padding: 10px;
+}

@@ -91,20 +91,6 @@ button {
     
 }
 
-.remover {
-    text-decoration: none;
-    color: white;
-    width: 70px;
-    height: 6vh;
-    background: #d33f8d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    font-size: 13px;
-    margin-top: 10px;
-    margin-left: 9px;
-}
 
 
 

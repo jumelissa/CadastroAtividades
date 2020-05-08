@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from '../Modal/modal';
 import Api from '../../services/api';
 import { FaArrowLeft } from "react-icons/fa";
+import ModalRemover from "../ModalRemover/index";
 
 export default class Detalhes extends Component {
     constructor(props) {
@@ -18,7 +19,8 @@ export default class Detalhes extends Component {
             description: '',
             dadosModal: '',
             comments: '',
-            task_id: ''
+            task_id: '',
+            modal: false
             
         }
 
@@ -41,7 +43,7 @@ export default class Detalhes extends Component {
         
 
     }
-    
+
 
         dadosModal = (e) => {
             let dadosModal = this.state.dadosModal
@@ -61,6 +63,10 @@ export default class Detalhes extends Component {
  
     modal = () => {
                 this.setState({showModal:!this.state.showModal})
+            }
+
+            modall = () => {
+                this.setState({modal:!this.state.modal})
             }
 
     editarDetalhes = async () => {
@@ -140,7 +146,7 @@ export default class Detalhes extends Component {
                                 {
                                     this.state.editarDisabled ? "Editar" : "Salvar"
                                 }</button>
-                            <a href="/Cadastro" onClick={this.removerDetalhes} className="remover">Remover</a>
+                            <button onClick={this.modall} className="remover">Remover</button>
                         </div>
                         
 
@@ -148,6 +154,8 @@ export default class Detalhes extends Component {
                         </div>
 
                         <Modal comments={this.state.comments} show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal} salvarComentario={this.salvarComentario}/>
+
+                        <ModalRemover openModal={this.modall} shoow={this.state.modal} removerDetalhes={this.removerDetalhes}/>
                     </>
                 
         )

@@ -38,18 +38,19 @@ export default class Cadastro extends Component {
                 let list = []
                 list.push(this.state.dados)
                 this.setState({dadosLista: [...this.state.dadosLista, this.state.dados]});
-                console.log(this.state.dadosLista);
                 let task = {...this.state.dados,user_id: sessionStorage.getItem('user_id')};
                 try {
                      let res = await Api.post(`/tasks`, task);
                      console.log(res);
-                   
+                        this.setState({dados: {title: "", due_date: "",description: ""}})
+                        console.log(this.state.dados);
                 } catch(err) {
                     console.log(`Erro ao cadastrar ${err}`);
                 
                 }
                 
             }
+
 
             updateDadosAtividade = (e) => {
                 this.setState({ dados: Object.assign({}, this.state.dados, {title: e.target.value})});
@@ -66,6 +67,7 @@ export default class Cadastro extends Component {
                 console.log(this.state.dados);
             }
 
+            
 
        
 
@@ -77,21 +79,24 @@ export default class Cadastro extends Component {
 
                 <h2>Cadastrar Atividade</h2>
 
-               <form className="form-cadastro">
+               <form className="form-cadastro" id="form-cadastro">
                  
                      <label>Atividade:</label>
-                    <input type="text" className="atividade" id="atividade" name="atividade" onChange={this.updateDadosAtividade}/>
+                    <input type="text" className="atividade" id="atividade" value={this.state.dados.title} name="atividade" onChange={this.updateDadosAtividade}/>
                 
                     <label className="data">Data:</label>
-                    <input type="text" className="number" id="data" name="data" onChange={this.updateDadosData}/>
+                    <input type="number" className="number" id="data" name="data" value={this.state.dados.due_date} onChange={this.updateDadosData}/>
 
                     
                     <label>Descrição:</label>
-                    <textarea id="descricao" rows="3" cols="41" name="descricao" onChange={this.updateDadosDescricao}></textarea>
+                    <textarea id="descricao" rows="3" cols="41" name="descricao" value={this.state.dados.description} onChange={this.updateDadosDescricao}></textarea>
+
                 </form>
+
+                     <input type="submit" value="Cadastrar" className="cadastro" onClick={this.salvarDados}/>
                     
                     
-                        <input type="submit" value="Cadastrar" className="cadastro" onClick={this.salvarDados}/>
+                       
 
                         <hr></hr>
 
