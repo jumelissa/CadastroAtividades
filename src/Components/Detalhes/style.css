@@ -1,39 +1,35 @@
 .container3 {
     width: 800px;
-    height: 90vh;
+    height: 100%;
     background: white;
     border-radius: 5px;
+    margin: 10vh;
+    
 
 }
 
-.detalhes-atividade {
-    color: #d33f8d;
-    text-align: center;
-    padding-top: 30px;
+
+.link {
+    margin-right: 30%;
 }
 
-.voltar {
-    width: 100px;
-    height: 8vh;
-    background: #d33f8d;
-    color: white;
+
+.dados-detalhes {
+    width: 80%;
+    height: 50%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 250px;
-    margin-left: 10px;
+    margin-top: 5px;
+    justify-content: flex-start;
+
 }
 
 p {
     color: #d33f8d;
 }
 
-.dados-detalhes {
-    margin-left: 30px;
-    margin-top: 30px;
-}
+
 
 button {
     width: 70px;
@@ -47,14 +43,56 @@ button {
     
 }
 
+.input-detalhes {
+    color: #738094;
+    border: none;
+    
+}
+
+.div-dados {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
 .botoes { 
     display: flex;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .botoes button{
     margin: 10px;
 }
+
+.botao-comentario {
+    margin: 7px;
+    width: 79px;
+    height: 6vh;
+}
+
+[disabled] {
+        background: white;
+}
+
+.icon-voltar {
+    color: #d33f8d;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 25%;
+    
+}
+
+.header-detalhes {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}
+
+
+
 
 
 

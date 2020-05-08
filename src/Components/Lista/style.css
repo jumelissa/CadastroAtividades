@@ -3,6 +3,8 @@
     justify-content: space-between;
 }
 
+
+
 .click-botao {
     text-decoration: none;
     color: white;
@@ -32,4 +34,11 @@
 
 }
 
+.dado {
+    margin-left: 3px;
+    color: #738094;
+}
 
+.dado-api {
+    display: flex;
+}

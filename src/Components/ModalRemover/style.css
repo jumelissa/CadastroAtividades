@@ -1,4 +1,4 @@
-.modal {
+.modal-remover {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -13,72 +13,46 @@
     align-items: center;
 }
 
-h4 {
-    color: #d33f8d;
-    text-align: center;
-    padding: 20px;
-
-}
-.container-modal {
+.container-modall {
     display: flex;
     flex-direction: column;
     position: relative;
     background: white;
-    width: 50%;
-    height: 40%;
+    width: 30%;
+    height: 25%;
     border-radius: 2px;
     display: flex;
-    
 }
 
-.show-true {
+.shoow-true {
     visibility: none;
 }
 
-.show-false {
+.shoow-false {
     visibility: hidden;
 }
 
-.btn-salvar {
-    
-    width: 74px;
+.remover {
+      text-decoration: none;
+    color: white;
+    width: 70px;
     height: 6vh;
     background: #d33f8d;
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    
-    
-}
-
-.btn-salver-fechar {
-    display: flex;
-    margin-left: 10px;
-    margin-top: 90px;
-}
-
-
-
-.fechar-modal { 
-    color: #d33f8d;
-    font-size: 15px;
-    cursor: pointer;
-    
-}
-
-.icon {
-    margin: 3px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.input-btn {
-    display: flex;
-    align-items: baseline;
+    font-size: 13px;
+    margin-right: 20px;
     margin-top: 30px;
+}
+
+.btn-modal {
+    display: flex;
     justify-content: center;
+}
+
+.container-modall p {
+    text-align: center;
+    padding: 10px;
 }

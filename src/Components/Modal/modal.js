@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
 import './style.css';
+import Api from '../../services/api';
+import { FaRegTimesCircle } from 'react-icons/fa';
 
-const Modal = (props) => {
+export default class Modal extends Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                dadosModal: ''
+            }
+    
+        }
 
-    const validationModal = (event) => {
-        this.setState({dadosModal: event.target.value})
-        console.log(this.state.dadosModal);
-     } 
 
-     return(
+        render() {
+            return(
         
-        <div className={"modal show-" + props.show}>
-                <div className="container-modal">
-                <h4>Deixe um comentário</h4>
-                <input type="text" className="input-comentario" id="comentario" name="comentario" onChange={this.validationModal}></input>
-                <button onClick={props.toggleModal}>Fechar</button>
+                <div className={"modal show-" + this.props.show}>
 
-            </div>
-            
-        </div>
+                        <div className="container-modal">
+
+                                <div className="icon">
+                                    <FaRegTimesCircle className="fechar-modal" onClick={this.props.toggleModal}/>
+                                </div>
+
+                                    <h4>Deixe um comentário</h4>
+
+                                <div className="input-btn">
+                                    <input type="text" className="input-comentario" id="comentario" name="comentario" onChange={this.props.dadosModal}/>
+                                    <input type="submit" value="salvar" className="btn-salvar" onClick={this.props.salvarComentario}/>
+                                </div>
+                        
+                        </div>
+                    
+                </div>
+        
+    
     )
 }
-
-export default Modal;
+}

@@ -3,6 +3,7 @@
     height: 90vh;
     background: white;
     border-radius: 5px;
+    margin: 5vh;
 
 }
 
@@ -20,14 +21,17 @@ form {
 input[type=text] {
     height: 40px;
     width: 300px;
-    padding-left: 20px;
+    padding-left: 15px;
+    color: #738094;
+    
 
 }
 
 input[type=password] {
         height: 40px;
         width: 300px;
-        padding-left: 20px;
+        padding-left: 15px;
+        
 }
 
 .senha {
@@ -38,7 +42,7 @@ input[type=password] {
     margin-top: 30px;
     display: flex;
     justify-content: baseline;
-    margin-left: 100px;
+    margin-right: 160px;
     color: #768591;
 }
 
@@ -78,8 +82,15 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 98px;
     border-radius: 5px;
+}
+
+.form-login {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .click-botao {
@@ -93,6 +104,13 @@ label {
     height: 5vh;
     border-radius: 5px;
 }
+
+.botao.disable {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
 
 
 

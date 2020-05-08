@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './style.css';
-import { Link } from 'react-router-dom';
+import Api from '../../services/api';
 
 export default class Login extends Component {
     
     state = {
         email: '',
-        senha: ''
+        senha: '',
+        senhaCorreta: false,
+        emailCorreto: false,
+        dados: []
+        
     }
 
 
@@ -21,18 +25,26 @@ export default class Login extends Component {
                 const email=this.state.email.split("");
                 email.forEach(letra => {
                     if (letra === "@") {
+                        this.setState({emailCorreto: true})
+                        if (this.state.emailCorreto === true && this.state.senhaCorreta ) {
+                            
+                        }
                         validor = true;
                     }
                 } )
 
             } else {
-                console.log("O email tem que ter um dominio")
+                this.setState({rotacadastro: ''});
+                this.setState({emailCorreto: false})
+                console.log("O email tem que ter um dominio");
             }
 
         } else { 
-            console.log("O email tem que ter mais de 7 letras")
+            this.setState({rotacadastro: ''});
+            this.setState({emailCorreto: false})
+            console.log("O email tem que ter mais de 7 letras");
         } if (validor) {
-            console.log("seu email esta valido")
+            console.log("seu email esta valido");
         }
 
 
@@ -43,42 +55,73 @@ export default class Login extends Component {
         let pattern = /(?=.*[a-zA-Z])/g;
         let pattern2 = /(?=.*[0-9])/;
         if (pattern.test(string)) {
-            console.log("Valido");
+            console.log("A senha precisa ter numeros");
             if (pattern2.test(string)) {
+                this.setState({senhaCorreta: true})
+                if (this.state.emailCorreto === true && this.state.senhaCorreta ) {
+                    this.setState({rotacadastro: '/Cadastro'});
+                }
                 console.log("senha ok")
+                document.querySelector(".botao").classList.remove("disable")
             }
         } else {
-                console.log("senha incorreta");
+            this.setState({rotacadastro: ''});
+            this.setState({senhaCorreta: false})
+                console.log("senha valida");
+                document.querySelector(".botao").classList.add("disable")
             
         }
-
-
-
-
         this.setState({senha: event.target.value})
         console.log(this.state.senha);
         
         }
-    
 
+        logarEmail = async (event) => {
+            event.preventDefault();
+            try {
+                let v_email = this.state.email;
+                let res = await Api.get(`/Users?email=${v_email}`);
+
+                console.log(res);
+                if (res.data != null) {
+                    const {id, email, password} = res.data[0];
+                    
+                    if (password === this.state.senha) {
+                        sessionStorage.setItem('user_id', id)
+                        sessionStorage.setItem('user_email', email)
+
+                        sessionStorage.setItem('id', id)
+                        this.props.history.push('/Cadastro')
+                    } else {
+                        console.log(`voce não esta logado`)
+                    }
+                }
+            } catch (err){
+                console.log(`Ocorreu um erro na consulta ${err}`)
+            }
+           
+        }
+
+      
+ 
 
     render() {
         return(
             <div className="container">
                 <h1>LOGIN</h1>
-                <form>
-                    <input type="text" className="email" placeholder="Email" id="email" name="email" onChange={this.validationemail}></input><br></br>
+                <form className="form-login">
+                    <input type="text" className="email" placeholder="Email" id="email" name="email" onChange={this.validationemail}/>
 
-                    <input type="password" className="senha" placeholder="Senha" id="senha" name="senha" onChange={this.validationsenha}></input><br></br>
+                    <input type="password" className="senha" placeholder="Senha" id="senha" name="senha" onChange={this.validationsenha}/>
 
                     <div className="remember">
-                    <input type="checkbox" className="check"></input>
+                    <input type="checkbox" className="check"/>
                     <label> Remember Me</label>
                     </div>
 
-                    <div className="botao">
-                    <Link to="/Cadastro" className="click-botao">Sign in</Link>
-                    </div>
+                    <input type="submit" className="botao disable" value="Sign in" onClick={this.logarEmail}/>
+                    
+                    
         
                 </form>
             </div>
