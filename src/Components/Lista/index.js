@@ -19,8 +19,14 @@ export default class Cadastro extends Component {
             <div className="lista-atividades">
 
                 <div className="detalhes-lista">
-                    <p>Atividade:{this.props.atividade}</p>
-                    <p>Data:{this.props.data}</p>
+                    <div className="dado-api">
+                        <p>Atividade:</p> <p className="dado"> {this.props.atividade}</p>
+                    </div>
+                   
+                   <div className="dado-api">
+                        <p>Data:</p> <p className="dado">{this.props.data}</p>
+                   </div>
+                    
                 </div>
     
                 <div className="detalhes-listaa">

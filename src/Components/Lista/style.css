@@ -34,4 +34,11 @@
 
 }
 
+.dado {
+    margin-left: 3px;
+    color: #738094;
+}
 
+.dado-api {
+    display: flex;
+}

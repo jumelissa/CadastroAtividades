@@ -16,7 +16,9 @@ export default class Detalhes extends Component {
             title: '',
             due_date: '',
             description: '',
-            dadosModal: ''
+            dadosModal: '',
+            comments: '',
+            task_id: ''
             
         }
 
@@ -41,18 +43,19 @@ export default class Detalhes extends Component {
     }
     
 
-    dadosModal = (event) => {
-        this.setState({dadosModal: event.target.value})
-        console.log(this.state.dadosModal);
+        dadosModal = (e) => {
+            let dadosModal = this.state.dadosModal
+            this.setState({dadosModal: this.state.dadosModal, comments: e.target.value})
+            console.log(dadosModal);
     } 
 
         salvarComentario = async (e) => {
-            let id = this.props.match.params.id;
-            // let task_id = sessionStorage.getItem('task_id');
-            let task_id = {comment: this.state.dadosModal, task_id: id};
-            // let comment = await Api.put(`/comments`, comment);
-            console.log(task_id);
-    }
+            let id_task = this.props.match.params.id;
+            let comments = await Api.post(`/comments`,{id_task, comments: this.state.comments})
+            console.log(comments)
+
+        }
+
 
 
  
@@ -124,7 +127,7 @@ export default class Detalhes extends Component {
 
                         <div className="div-dados">
                             <label>Comentário:</label>
-                            <input type="text" value="" className="input-detalhes"/>
+                            <input type="text" value={this.state.comments} name="comments" onChange={this.atualizarEstado} disabled={this.state.editarDisabled} className="input-detalhes"/>
                         </div>
 
                     </form>
@@ -137,14 +140,14 @@ export default class Detalhes extends Component {
                                 {
                                     this.state.editarDisabled ? "Editar" : "Salvar"
                                 }</button>
-                            <button onClick={this.removerDetalhes} className="remover">Remover</button>
+                            <a href="/Cadastro" onClick={this.removerDetalhes} className="remover">Remover</a>
                         </div>
                         
 
                             
                         </div>
 
-                        <Modal show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal} salvarComentario={this.salvarComentario}/>
+                        <Modal comments={this.state.comments} show={this.state.showModal} toggleModal={this.modal} dadosModal={this.dadosModal} salvarComentario={this.salvarComentario}/>
                     </>
                 
         )

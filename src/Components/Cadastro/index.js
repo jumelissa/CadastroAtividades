@@ -9,9 +9,9 @@ export default class Cadastro extends Component {
     state = {
             showModal: false,
             dados : {
-                title: "ir ao mercado",
-                due_date: "17/04/2020",
-                description: "preciso comprar ingredientes para fazer um bolo"
+                title: "",
+                due_date: "",
+                description: ""
             },
             
             dadosLista: [],
@@ -43,15 +43,17 @@ export default class Cadastro extends Component {
                 try {
                      let res = await Api.post(`/tasks`, task);
                      console.log(res);
+                   
                 } catch(err) {
                     console.log(`Erro ao cadastrar ${err}`);
                 
                 }
+                
             }
 
             updateDadosAtividade = (e) => {
                 this.setState({ dados: Object.assign({}, this.state.dados, {title: e.target.value})});
-                console.log(e.target.value);
+                console.log(this.state.dados);
             }
            
             updateDadosData = (e) => {
@@ -81,11 +83,11 @@ export default class Cadastro extends Component {
                     <input type="text" className="atividade" id="atividade" name="atividade" onChange={this.updateDadosAtividade}/>
                 
                     <label className="data">Data:</label>
-                    <input type="text" id="data" name="data" onChange={this.updateDadosData}/>
+                    <input type="text" className="number" id="data" name="data" onChange={this.updateDadosData}/>
 
                     
                     <label>Descrição:</label>
-                    <textarea id="descricao" rows="3" cols="41" onChange={this.updateDadosDescricao}></textarea>
+                    <textarea id="descricao" rows="3" cols="41" name="descricao" onChange={this.updateDadosDescricao}></textarea>
                 </form>
                     
                     
