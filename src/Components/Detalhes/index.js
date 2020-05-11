@@ -54,6 +54,7 @@ export default class Detalhes extends Component {
         salvarComentario = async (e) => {
             let id_task = this.props.match.params.id;
             let comments = await Api.post(`/comments`,{id_task, comments: this.state.comments})
+            this.setState({showModal: false})
             console.log(comments)
 
         }
